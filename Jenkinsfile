@@ -61,7 +61,10 @@ node {
                 def workspaceDir = pwd()
 
                 // Run the Docker container with an absolute path as the working directory
-                docker.image(dockerImage).run("-v ${workspaceDir}:/app", "-w /app")
+                 script {
+        // Run the Docker container with an absolute path as the working directory
+        sh "docker run -v ${workspaceDir}:/app -w /app ${dockerImage}"
+    }
                 dockerImage.inside("-u root") {
                 stage ("SFDX Authentication") {
                     sh "sf org login jwt --jwt-key-file ${server_key_file} --set-default-dev-hub --alias HubOrg --instance-url ${SF_INSTANCE_URL} --client-id ${SF_CONSUMER_KEY} --username ${SF_USERNAME}"
