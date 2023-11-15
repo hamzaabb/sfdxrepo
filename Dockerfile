@@ -17,5 +17,5 @@ ENV SFDX_PROJECT_DIR=/app
 EXPOSE 8080
 
 # Specify the command to run your Salesforce project (you can customize this)
-CMD ["tail", "-f", "/dev/null"]
+CMD ["echo", "test"]
 

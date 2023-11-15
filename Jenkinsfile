@@ -29,6 +29,16 @@ node {
         checkout scm
     }
 
+    // -------------------------------------------------------------------------
+    // Run the Docker container with the Salesforce DX image.
+    // -------------------------------------------------------------------------
+
+    stage('Run Docker Container') {
+        // Modify the Docker image name and tag as needed
+        def dockerImage = 'escowar/sfdximage'
+        docker.image(dockerImage).run()
+    }
+
 
     // -------------------------------------------------------------------------
     // Run all the enclosed stages with access to the Salesforce
