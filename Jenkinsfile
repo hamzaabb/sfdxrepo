@@ -33,11 +33,11 @@ node {
     // Run the Docker container with the Salesforce DX image.
     // -------------------------------------------------------------------------
 
-    // stage('Run Docker Container') {
-    //     // Modify the Docker image name and tag as needed
-    //     def dockerImage = 'escowar/sfdximage'
-    //     docker.image(dockerImage).run()
-    // }
+    stage('Run Docker Container') {
+        // Modify the Docker image name and tag as needed
+        def dockerImage = 'escowar/sfdximage'
+        docker.image(dockerImage).run()
+    }
 
 
     // -------------------------------------------------------------------------
@@ -45,9 +45,9 @@ node {
     // JWT key credentials.
     // -------------------------------------------------------------------------
     
- 
+    withEnv(["HOME=${env.WORKSPACE}"]) {
         
-    withCredentials([file(credentialsId: SERVER_KEY_CREDENTALS_ID, variable: 'server_key_file')]) {
+       withCredentials([file(credentialsId: SERVER_KEY_CREDENTALS_ID, variable: 'server_key_file')]) {
 
             // -------------------------------------------------------------------------
             // Authorize the Dev Hub org with JWT key and give it an alias.
@@ -75,7 +75,7 @@ node {
 
 
     }
-    
+    }
 }
 
 def command(script) {
