@@ -60,7 +60,7 @@ node {
                     sh "sf org login jwt --jwt-key-file ${server_key_file} --set-default-dev-hub --alias HubOrg --instance-url ${SF_INSTANCE_URL} --client-id ${SF_CONSUMER_KEY} --username ${SF_USERNAME}"
                }
                 
-            }
+            }}
 
             // stage('Authorize DevHub') {
             //     rc = command "sf org login jwt --jwt-key-file ${server_key_file} --set-default-dev-hub --alias HubOrg --instance-url ${SF_INSTANCE_URL} --client-id ${SF_CONSUMER_KEY} --username ${SF_USERNAME}"
