@@ -54,8 +54,15 @@ node {
             // -------------------------------------------------------------------------
 
             stage('Run Docker Container') {
-                def customImage = docker.build("escowar/sfdximage")
-                customImage.inside("-u root") {
+                // Modify the Docker image name and tag as needed
+                def dockerImage = 'escowar/sfdximage'
+
+                // Get the absolute path of the workspace
+                def workspaceDir = pwd()
+
+                // Run the Docker container with an absolute path as the working directory
+                docker.image(dockerImage).run("-v ${workspaceDir}:/app", "-w /app")
+                dockerImage.inside("-u root") {
                 stage ("SFDX Authentication") {
                     sh "sf org login jwt --jwt-key-file ${server_key_file} --set-default-dev-hub --alias HubOrg --instance-url ${SF_INSTANCE_URL} --client-id ${SF_CONSUMER_KEY} --username ${SF_USERNAME}"
                }
