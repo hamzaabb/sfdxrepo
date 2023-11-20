@@ -16,10 +16,11 @@ pipeline {
             }
         }
 
+        withEnv(["HOME=${env.WORKSPACE}"]) {
         stage('Build and Deploy') {
-            environment {
-                  HOME="${env.WORKSPACE}"
-                }
+            // environment {
+            //       HOME="${env.WORKSPACE}"
+            //     }
             steps {
                 script {
                     // Use Salesforce CLI commands inside the Docker container
@@ -27,6 +28,6 @@ pipeline {
                     // Add more Salesforce CLI commands as needed
                 }
             }
-        }
+        }}
     }
 }
