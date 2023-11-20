@@ -17,6 +17,9 @@ pipeline {
         }
 
         stage('Build and Deploy') {
+            environment {
+                  HOME="."
+                }
             steps {
                 script {
                     // Use Salesforce CLI commands inside the Docker container
