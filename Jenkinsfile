@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            // Use the Salesforce CLI Docker image
-            image 'salesforce/cli:2.18.6-slim'
-        }
-    }
+   
 
     stages {
         stage('Checkout') {
