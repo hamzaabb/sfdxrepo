@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            // Use the Salesforce CLI Docker image
+            image 'escowar/sfdximage'
+        }
+    }
 
     stages {
         stage('Checkout') {
@@ -14,7 +19,7 @@ pipeline {
         stage('Build and Deploy') {
             steps {
                 script {
-                    // Use Salesforce CLI commands
+                    // Use Salesforce CLI commands inside the Docker container
                     sh 'sf '
                     sh 'sfdx'
                     // Add more Salesforce CLI commands as needed
