@@ -18,7 +18,7 @@ pipeline {
 
         stage('Build and Deploy') {
             environment {
-                  HOME="${WORKSPACE}"
+                  HOME="C:/ProgramData/Jenkins/.jenkins/workspace"
                 }
             steps {
                 script {
