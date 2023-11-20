@@ -23,8 +23,7 @@ pipeline {
             steps {
                 script {
                     // Use Salesforce CLI commands inside the Docker container
-                    sh 'sf '
-                    sh 'sfdx'
+                    sh 'sf test'
                     // Add more Salesforce CLI commands as needed
                 }
             }
