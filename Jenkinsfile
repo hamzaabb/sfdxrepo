@@ -1,26 +1,20 @@
 pipeline {
-   
+    agent any
 
     stages {
-        stage('Checkout') {
+        stage('Build') {
             steps {
-                script {
-                    // Checkout your Salesforce project from Git
-                    checkout scm
-                }
+                echo 'Building..'
             }
         }
-
-        stage('Build and Deploy') {
-            environment {
-                  HOME="."
-                }
+        stage('Test') {
             steps {
-                script {
-                    // Use Salesforce CLI commands inside the Docker container
-                    sh 'echo version'
-                    // Add more Salesforce CLI commands as needed
-                }
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
             }
         }
     }
