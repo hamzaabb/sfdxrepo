@@ -1,33 +1,34 @@
-pipeline {
-    agent {
-        docker {
-            // Use the Salesforce CLI Docker image
-            image 'salesforce/cli:2.18.6-slim'
+node {
+    def app
+
+    stage('Clone repository') {
+      
+
+        checkout scm
+    }
+
+    stage('Build image') {
+  
+       app = docker.build("escowar/sfdximage")
+    }
+
+    stage('Test image') {
+  
+
+        app.inside {
+            sh 'echo "Tests passed"'
         }
     }
 
-    //stages {
-        stage('Checkout') {
-            steps {
-                script {
-                    // Checkout your Salesforce project from Git
-                    checkout scm
-                }
-            }
+    stage('Push image') {
+        
+        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+            app.push("${env.BUILD_NUMBER}")
         }
-
-        withEnv(["HOME=${env.WORKSPACE}"]) {
-        stage('Build and Deploy') {
-            // environment {
-            //       HOME="${env.WORKSPACE}"
-            //     }
-            steps {
-                script {
-                    // Use Salesforce CLI commands inside the Docker container
-                    sh 'sf version'
-                    // Add more Salesforce CLI commands as needed
-                }
-            }
-        }}
-    //}
+    }
+    
+    stage('Trigger ManifestUpdate') {
+                echo "triggering updatemanifestjob"
+                build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+        }
 }
