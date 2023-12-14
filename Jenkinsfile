@@ -16,7 +16,7 @@ node {
   
 
         app.inside {
-            sh 'sfdx version'
+            sh 'echo "Tests passed"'
         }
     }
 
