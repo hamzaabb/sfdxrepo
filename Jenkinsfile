@@ -16,8 +16,15 @@ node {
   
 
         app.inside {
-            sh 'sfdx --help'
+            sh 'sfdx force:auth:device:login -a ayoub7nafil10-rpsq@force.com -r https://test.salesforce.com'
         }
+    }
+
+    stage('Test image2') {
+  
+
+            sh 'sfdx --help'
+        
     }
 
     stage('Push image') {
