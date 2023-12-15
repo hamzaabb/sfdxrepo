@@ -12,15 +12,15 @@ node {
        app = docker.build("escowar/sfdximage")
     }
 
-    stage('Test image') {
+    // stage('Test image') {
   
 
-        app.inside {
-            sh 'sfdx force:auth:device:login -a ayoub7nafil10-rpsq@force.com -r https://test.salesforce.com'
-        }
-    }
+    //     app.inside {
+    //         sh 'sfdx force:auth:device:login -a ayoub7nafil10-rpsq@force.com -r https://test.salesforce.com'
+    //     }
+    // }
 
-    stage('Test image2') {
+    stage('Test image') {
   
 
             sh 'sfdx --help'
