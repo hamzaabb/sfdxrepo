@@ -16,7 +16,7 @@ node {
   
 
         app.inside {
-            sh 'sfdx force:auth:web:login -a ayoub7nafil10-rpsq@force.com -r https://test.salesforce.com'
+            sh 'sfdx --help'
         }
     }
 
