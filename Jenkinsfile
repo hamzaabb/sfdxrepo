@@ -18,7 +18,7 @@ node {
         app.inside {
             sh 'sfdx --help'
         }
-    // }
+     }
 
     // stage('Test image') {
   
