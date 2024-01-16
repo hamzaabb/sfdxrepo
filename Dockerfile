@@ -20,4 +20,4 @@ ENV SFDX_PROJECT_DIR=/app
 EXPOSE 8080
 
 # Specify the command to run your Salesforce project (you can customize this)
-CMD ["sfdx", "version"]
+CMD ["sf org login jwt --jwt-key-file ${server_key_file} --set-default-dev-hub --alias HubOrg --instance-url ${SF_INSTANCE_URL} --client-id ${SF_CONSUMER_KEY} --username ${SF_USERNAME}"]
